@@ -1,14 +1,22 @@
 {
-  "name": "2026.02.24_membership_registration_review",
+  "name": "web-nodejs-board-project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryongbom/Web-nodejs-board-project.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryongbom/Web-nodejs-board-project/issues"
+  },
+  "homepage": "https://github.com/ryongbom/Web-nodejs-board-project#readme",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "ejs": "^4.0.1",
