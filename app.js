@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const session = require('express-session');
 const multer = require('multer');
 const path = require('path');
 const User = require('./models/User');
@@ -11,6 +12,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 app.use(express.static('public'));
+
+// add session-middleware
+app.use(session({
+    secret: 'your-secret-key-change-this',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 } // 1 hour
+}));
+
+// log in check middleware
+const checkAuth = (req, res, next) => {
+    if (!req.session.user) {
+        return res.redirect('/login')
+    }
+    next();
+};
 
 mongoose.connect('mongodb://localhost:27017/userapp')
     .then(() => {
@@ -37,6 +54,51 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+// login form
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+// working for logining
+app.post('/login', async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.body.email });
+        if (!user) {
+            return res.send('존재하지 않는 이메일입니다');
+        }
+
+        // this part is very internesting
+        const isMatch = await bcrypt.compare(req.body.password, user.password);
+        if (!isMatch) {
+            return res.send('비밀번호가 틀렸습니다.');
+        }
+
+        req.session.user = {
+            _id: user._id,
+            name: user.name,
+            email: user.email
+        };
+
+        res.redirect('/posts');
+    } catch (err) {
+        console.error(err);
+        res.send('사용자가입 실패!');
+    }
+});
+
+// app.get('/posts', (req, res) => {
+//     res.send('Success!');
+// });
+
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+});
+
+app.get('/register', (req, res) => {
     res.render('register');
 });
 
@@ -64,7 +126,7 @@ app.post('/register', upload.single('profileImage'), async (req, res) => {
             <p>이름: ${newUser.name}</p>
             <p>이메일: ${newUser.email}</p>
             <p>프로필: ${newUser.profileImage}</p>
-            <a href="/" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">돌아가기</a>
+            <a href="/login" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">돌아가기</a>
         `);
     } catch (err) {
         console.log('Error', err);
@@ -72,7 +134,7 @@ app.post('/register', upload.single('profileImage'), async (req, res) => {
         if (err.code === 11000) {
             return res.send(`
                 <h2 style="color: red;">이미 존재하는 이메일입니다.</h2>
-                <a href="/" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">돌아가기</a>
+                <a href="/register" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">돌아가기</a>
             `);
         }
 

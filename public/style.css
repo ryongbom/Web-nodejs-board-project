@@ -24,6 +24,16 @@ body {
     border-radius: 10px;
 }
 
+.image-section1 {
+    width: 50%;
+    background-image: url('backgroundLogin.jpg');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 10px 0 10px rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+
 .register {
     width: 50%;
     display: flex;
@@ -96,4 +106,101 @@ body {
     color: white;
     transform: translateY(-2px);
     border: none;
+}
+
+.register-section label {
+    padding-left: 5px;
+}
+
+.login-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+    margin: 0 30px;
+    height: 100vh;
+    /* color: aliceblue; */
+}
+
+.login-container h1 {
+    font-size: 50px;
+    font-family: '천리마';
+    font-weight: bold;
+    margin-bottom: 40px;
+    /* border: 1px solid pink; */
+    color: #FE710D;
+}
+
+.login-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* border: 1px solid blue; */
+    width: 80%;
+    height: 40vh;
+    font-size: 20px;
+    gap: 10px;
+    padding: 30px;
+    background-color: #262a32;
+    border-radius: 10px;
+    color: #B4DCE9;
+    /* box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.3); */
+}
+
+.login-section input {
+    width: 100%;
+    height: 40px;
+    padding: 5px 5px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid grey;
+    margin-bottom: 10px;
+    background-color: #404754;
+    color: #fc8d3f;
+}
+
+.button-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.button-section button {
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #B4DCE9;
+}
+
+.button-section button:hover {
+    background-color: #fc8d3f;
+    color: white;
+    transform: translateY(-2px);
+    border: none;
+}
+
+.login-container p {
+    margin-top: 30px;
+    color: rgb(157, 161, 173);
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.login-container p a {
+    color: #fc8d3f;
+}
+
+.login-container p a:hover {
+    color: #B4DCE9;
 }

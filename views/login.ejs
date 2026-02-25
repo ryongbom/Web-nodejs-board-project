@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자가입</title>
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="image-section1">
+
+    </div>
+    <div class="login-container">
+        <h1>사용자가입</h1>
+        <form action="/login" method="POST" class="login-section">
+            <div class="form-group">
+                <label>이메일</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>비밀번호</label>
+                <input type="password" name="password" required>
+            </div>
+            <div class="button-section">
+                <button type="submit">가입</button>
+            </div>
+        </form>
+        <p>계정이 없나요? <a href="/register">사용자등록</a></p>
+    </div>
+</body>
+</html>
