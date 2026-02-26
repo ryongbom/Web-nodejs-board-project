@@ -14,6 +14,7 @@ body {
     background-color: #1C1F25;
 }
 
+/* css for register.ejs */
 .image-section {
     width: 50%;
     background-image: url('background.jpg');
@@ -112,6 +113,7 @@ body {
     padding-left: 5px;
 }
 
+/* css for login.ejs */
 .login-container {
     width: 50%;
     display: flex;
