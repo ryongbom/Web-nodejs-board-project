@@ -1,0 +1,116 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    background-color: #262a32;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container h1 {
+    color: #deb55d;
+    font-family: '청봉';
+    font-size: 45px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.container form {
+    border: 1px solid rgb(136, 111, 63);
+    border-radius: 20px;
+    width: 65%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2b2e35;
+    padding-top: 20px;
+}
+
+.form-group {
+    color: #B4DCE9;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    width: 90%;
+    font-size: 25px;
+    gap: 5px;
+}
+
+.form-group label {
+    padding-left: 20px;
+}
+
+.form-group input {
+    font-size: 20px;
+    padding: 0px 15px;
+    border-radius: 7px;
+    background-color: #343943;
+    border: 1px solid #6c7076;
+    color: rgb(213, 196, 154);
+    height: 60px;
+}
+
+.form-group textarea {
+    font-size: 20px;
+    padding: 20px 15px;
+    border-radius: 7px;
+    background-color: #343943;
+    border: 1px solid #6c7076;
+    resize: none;
+    color: rgb(213, 196, 154);
+    min-height: 200px;
+    scrollbar-width: 7px;
+    scrollbar-color: #6c7076 #343943;
+    overflow-y: auto;
+}
+
+.buttons-group {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    gap: 200px;
+}
+
+.buttons-group a {
+    background-color: #d75067;
+    text-decoration: none;
+    color: white;
+    width: 140px;
+    height: 55px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.buttons-group a:hover {
+    background-color: #ff6b84;
+}
+
+.buttons-group button {
+    background-color: #689c5b;
+    color: white;
+    width: 140px;
+    height: 55px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.buttons-group button:hover {
+    background-color: #79d163;
+}

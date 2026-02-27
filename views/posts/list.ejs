@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <link href="/postStyle.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="list-nav">
+            <div class="title-section">
+                <div class="image-section">
+                
+                </div>
+                <h1 class="title-list">토론마당</h1>
+            </div>
+            
+            <% if (user) { %>
+                <p class="welcome-list"><span>가입자: </span><%= user.name %></p>
+                <div class="list-nav-btns">
+                    <a href="/posts/write" class="write-btn">글쓰기</a>
+                    <a href="/logout" class="logout-btn">가입탈퇴</a>
+                </div>
+            <% } else { %>
+                <p class="text-nav">게시글을 작성하려면 사용자가입을 진행해주십시오.</p>
+                <div class="list-nav-btns">
+                    <a href="/login" class="login-btn">사용자가입</a>
+                    <a href="/register" class="register-btn">사용자등록</a> 
+                </div>
+            <% } %>
+        </div>
+
+        <table class="list-container">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>조회수</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (posts.length === 0) { %>
+                    <tr>
+                        <td colspan="5" class="none-posts" style="text-align: center; 
+                            color: white; padding: 20px 0px; font-size: 20px;">
+                            제시할 게시글이 없습니다. 게시글을 작성하십시오.
+                        </td>
+                    </tr>
+                <% } else { %>
+                    <% posts.forEach((post, index) => { %>
+                    <tr style="border-bottom: 1px solid #545d69;" class="post-list">
+                        <td><%= posts.length - index %></td>
+                        <td>
+                            <a href="/posts/<%= post._id %>">
+                                <%= post.title %>
+                            </a>
+                        </td>
+                        <td><%= post.authorName %></td>
+                        <td><%= new Date(post.createdAt).toLocaleDateString() %></td>
+                        <td><%= post.views %> </td>
+                    </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

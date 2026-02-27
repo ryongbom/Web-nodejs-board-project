@@ -4,6 +4,7 @@ const session = require('express-session');
 const multer = require('multer');
 const path = require('path');
 const User = require('./models/User');
+const Post = require('./models/Post');
 const bcrypt = require('bcryptjs');
 const app = express();
 
@@ -33,7 +34,7 @@ mongoose.connect('mongodb://localhost:27017/userapp')
     .then(() => {
         console.log('successfully connected to mongoDB!');
         app.listen(3001, () => {
-            console.log('Server is running at http://localhost:3001');
+            console.log('Server is running at http://192.168.0.22:3001');
         });
     })
     .catch(err => {
@@ -89,9 +90,41 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// app.get('/posts', (req, res) => {
-//     res.send('Success!');
-// });
+app.get('/posts', async (req, res) => {
+    try {
+        const posts = await Post.find()
+            .sort({ createdAt: -1 })
+            .populate('author', 'name email');
+
+        res.render('posts/list', {
+            posts,
+            user: req.session.user
+        });
+    } catch (err) {
+        console.log('오유발생');
+    }
+});
+
+app.get('/posts/write', checkAuth, (req, res) => {
+    res.render('posts/write', { user: req.session.user });
+});
+
+app.post('/posts', checkAuth, async (req, res) => {
+    try {
+        const post = new Post({
+            title: req.body.title,
+            content: req.body.content,
+            author: req.session.user._id,
+            authorName: req.session.user.name
+        });
+
+        await post.save();
+        res.redirect('/posts');
+    } catch (err) {
+        console.error(err);
+        res.send('보관 실패!');
+    }
+});
 
 app.get('/logout', (req, res) => {
     req.session.destroy();

@@ -1,0 +1,176 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    background-color: #262a32;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.list-nav {
+    width: 100%;
+    height: 20vh;
+    /* border-bottom: 2px solid wheat; */
+    background-color: #1C1F25;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    border-bottom: 3px solid #734626;
+}
+
+.title-section {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.title-list {
+    color: #B4DCE9;
+    font-size: 50px;
+    font-family: '청봉';
+    font-weight: bold;
+}
+
+.title-list:hover {
+    color: #fc8d3f;
+}
+
+.image-section {
+    background-image: url(nav-image.png);
+    width: 150px;
+    height: 100px;
+    background-size: cover;
+}
+
+.welcome-list {
+    color: rgb(135, 157, 190);
+    font-size: 25px;
+    font-family: '천리마';
+}
+
+.welcome-list span {
+    font-size: 20px;
+}
+
+.list-nav a {
+    text-decoration: none;
+    width: 130px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    font-family: '천리마';
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.logout-btn:hover {
+    background-color: #cf334d;
+}
+
+.text-nav {
+    color: #548da0;
+    font-size: 17px;
+    font-family: '천리마';
+}
+
+.text-nav:hover {
+    color: #B4DCE9;
+}
+
+.list-nav-btns {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.write-btn {
+    background-color: #689c5b;
+}
+
+.write-btn:hover {
+    background-color: #a4d697;
+}
+
+.logout-btn {
+    background-color: #d75067;
+}
+
+.login-btn {
+    background-color: #5b8c9c;
+}
+
+.register-btn {
+    background-color: #d88d56;
+}
+
+.login-btn:hover {
+    background-color: #6cb1c8;
+}
+
+.register-btn:hover {
+    background-color: #fc8d3f;
+}
+
+.list-container {
+    margin: 10px;
+    width: 100%;
+    font-family: '청봉';
+    border-collapse: collapse;
+}
+
+.list-container thead {
+    color: #6cb1c8;
+    background-color: #1C1F25;
+    height: 70px;
+    border-bottom: 1px solid #545d69;
+    font-size: 22px;
+}
+
+.post-list {
+    color: rgb(252, 203, 90);
+    padding: 15px, 0px;
+    font-size: 20px;
+    height: 80px;
+    text-align: center;
+}
+
+/* 테이블 링크 스타일 (추가) */
+.post-list a {
+    color: rgb(252, 203, 90);
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 0;
+}
+
+.post-list a:hover {
+    color: #fc8d3f;
+    text-decoration: underline;
+}
+
+.post-list td:first-child {
+    width: 80px;
+}
+
+.post-list td:nth-child(2) {
+    text-align: left;
+    padding-left: 100px;
+}
+
+.post-list td:nth-child(3),
+.post-list td:nth-child(4),
+.post-list td:nth-child(5) {
+    text-align: center;
+}
