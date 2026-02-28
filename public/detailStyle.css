@@ -1,0 +1,119 @@
+/*
+#262a32
+#B4DCE9 // blue
+#fc8d3f // orange
+#6c7076 // grey
+#d75067 // pink
+#79d163 // green
+*/
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.detail-container {
+    background-color: #262a32;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail-container h1 {
+    color: #fc8d3f;
+    font-family: '청봉';
+    font-size: 40px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.post-info {
+    background-color: #383b40;
+    width: 70%;
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #a9d3e0;
+    font-family: '천리마';
+    font-size: 20px;
+    border-bottom: 3px solid #b26935;
+}
+
+.post-content {
+    width: 70%;
+    height: 40vh;
+    background-color: #1f2225;
+    color: wheat;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 20px;
+    font-family: '청봉';
+    border-bottom: 2px solid #7c9da7;
+    padding: 30px 70px;
+} 
+
+.button-group {
+    width: 70%;
+    height: 14vh;
+    background-color: #383b40;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button-group .btn {
+    width: 130px;
+    height: 50px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+}
+
+.edit-delete-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.btn-list {
+    background-color: #6f9acc;
+}
+
+.btn-edit {
+    background-color: #80c76f;
+}
+
+.btn-delete {
+    background-color: #d75067;
+}
+
+.btn-list:hover {
+    background-color: #9cbbdf;
+}
+
+.btn-edit:hover {
+    background-color: #9ccd90;
+}
+
+.btn-delete:hover {
+    background-color: #e07688;
+}

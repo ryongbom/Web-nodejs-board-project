@@ -6,6 +6,7 @@ const path = require('path');
 const User = require('./models/User');
 const Post = require('./models/Post');
 const bcrypt = require('bcryptjs');
+const { title } = require('process');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -34,7 +35,7 @@ mongoose.connect('mongodb://localhost:27017/userapp')
     .then(() => {
         console.log('successfully connected to mongoDB!');
         app.listen(3001, () => {
-            console.log('Server is running at http://192.168.0.22:3001');
+            console.log('Server is running at http://localhost:3001');
         });
     })
     .catch(err => {
@@ -107,6 +108,39 @@ app.get('/posts', async (req, res) => {
 
 app.get('/posts/write', checkAuth, (req, res) => {
     res.render('posts/write', { user: req.session.user });
+});
+
+app.get('/posts/:id', async (req, res) => {
+    try {
+        await Post.findByIdAndUpdate(req.params.id, {
+            $inc: { views: 1 }
+        });
+
+        const post = await Post.findById(req.params.id)
+            .populate('author', 'name email');
+
+        if (!post) {
+            return res.send('존재하지 않는 전자우편입니다.');
+        }
+
+        res.render('posts/detail', {
+            post,
+            user: req.session.user
+        });
+    } catch (err) {
+        console.error(err);
+        res.send('오유발생');
+    }
+});
+
+app.post('/posts/:id/delete', async (req, res) => {
+    try {
+        await Post.findByIdAndDelete(req.params.id);
+        res.redirect('/posts');
+    } catch (err) {
+        console.error(err);
+        res.send('오유발생');
+    }
 });
 
 app.post('/posts', checkAuth, async (req, res) => {

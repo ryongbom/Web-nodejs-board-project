@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>상세보기</title>
+    <link href="/detailStyle.css" rel="stylesheet">
+</head>
+<body>
+    <div class="detail-container">
+        <h1><%= post.title %></h1>
+
+        <div class="post-info">
+            <span>작성자: <strong><%= post.authorName %></strong></span>
+            <span>작성일: <%= new Date(post.createdAt).toLocaleString() %></span>
+            <span class="views">방문회수: <%= post.views %></span>
+        </div>
+
+        <div class="post-content">
+            <%= post.content %>
+        </div>
+
+        <div class="button-group">
+            <a href="/posts" class="btn btn-list">목록</a>
+
+            <% if (user && user._id === post.author._id.toLocaleString()) { %>
+                <div class="edit-delete-btn">
+                    <a href="/posts/<%= post._id %>/edit" class="btn btn-edit">수정</a>
+
+                    <form action="/posts/<%= post._id %>/delete" method="POST">
+                        <button type="submit" class="btn btn-delete" onclick="return confirm('정말 삭제하시겠습니까?')">
+                            삭제
+                        </button>
+                    </form>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
