@@ -111,6 +111,7 @@ body {
 
 .register-section label {
     padding-left: 5px;
+    font-family: '천리마';
 }
 
 /* css for login.ejs */
