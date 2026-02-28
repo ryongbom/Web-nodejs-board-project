@@ -6,7 +6,6 @@ const path = require('path');
 const User = require('./models/User');
 const Post = require('./models/Post');
 const bcrypt = require('bcryptjs');
-const { title } = require('process');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -133,6 +132,16 @@ app.get('/posts/:id', async (req, res) => {
     }
 });
 
+app.get('/posts/:id/edit', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        res.render('posts/edit', { post, user: req.session.user });
+    } catch (err) {
+        console.error(err);
+        res.send('수정실패');
+    }
+})
+
 app.post('/posts/:id/delete', async (req, res) => {
     try {
         await Post.findByIdAndDelete(req.params.id);
@@ -157,6 +166,22 @@ app.post('/posts', checkAuth, async (req, res) => {
     } catch (err) {
         console.error(err);
         res.send('보관 실패!');
+    }
+});
+
+app.post('/posts/:id/update', checkAuth, async (req, res) => {
+    try {
+        const post = await Post.findByIdAndUpdate(req.params.id, {
+            title: req.body.title,
+            content: req.body.content
+        });
+
+        await post.save();
+
+        res.redirect('/posts/' + req.params.id);
+    } catch (err) {
+        console.error(err);
+        res.send('수정실패!');
     }
 });
 
