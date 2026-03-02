@@ -25,15 +25,15 @@
 .detail-container h1 {
     color: #fc8d3f;
     font-family: '청봉';
-    font-size: 35px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .post-info {
     background-color: #383b40;
     width: 70%;
-    height: 15vh;
+    height: 10vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -48,7 +48,7 @@
 
 .post-content {
     width: 70%;
-    height: 40vh;
+    height: 20vh;
     background-color: #1f2225;
     color: wheat;
     display: flex;
@@ -58,6 +58,8 @@
     font-family: '청봉';
     border-bottom: 2px solid #7c9da7;
     padding: 30px 70px;
+    scrollbar-width: 7px;
+    scrollbar-color: #6c7076 #343943;
 } 
 
 .button-group {
@@ -116,4 +118,113 @@
 
 .btn-delete:hover {
     background-color: #e07688;
+}
+
+.comments-section {
+    overflow-y: auto;
+    scrollbar-width: 7px;
+    scrollbar-color: #6c7076 #343943;
+    padding: 0px 20px;
+    background-color: #2d313a;
+    margin-top: 30px;
+    border-top: 1px solid #4c83bd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50vh;
+}
+
+.comment-form {
+    width: 100%;
+}
+
+.comment-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-form form textarea {
+    width: 65%;
+    background-color: #343943;
+    height: 80px;
+    font-size: 17px;
+    padding: 10px 20px;
+    resize: none;
+    scrollbar-width: 7px;
+    scrollbar-color: #6c7076 #343943;
+    overflow-y: auto;
+    font-family: '청봉';
+    color: wheat;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.comment-form form button {
+    border: none;
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: white;
+    background-color: #65a0df;
+    font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+.comment-form form button:hover {
+    background-color: #4c83bd;
+}
+
+.comments-list {
+    width: 80%;
+    border-top: 1px solid rgb(95, 110, 112);
+    padding: 10px 80px;
+}
+
+.comment-item {
+    width: 100%;
+    background-color: #2b2e35;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left: 3px solid #fc8d3f;
+}
+        
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #B4DCE9;
+    font-size: 14px;
+}
+        
+.comment-author {
+    font-weight: bold;
+    color: #fc8d3f;
+}
+        
+.comment-content {
+    color: white;
+    line-height: 1.5;
+}
+        
+.comment-delete {
+    color: #d75067;
+    text-decoration: none;
+    font-size: 12px;
+    background-color: #343943;
+    border: none;
+}
+        
+.comment-delete:hover {
+    text-decoration: underline;
+}
+        
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }

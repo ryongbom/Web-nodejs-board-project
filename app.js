@@ -5,6 +5,7 @@ const multer = require('multer');
 const path = require('path');
 const User = require('./models/User');
 const Post = require('./models/Post');
+const Comment = require('./models/Comment');
 const bcrypt = require('bcryptjs');
 const app = express();
 
@@ -118,12 +119,15 @@ app.get('/posts/:id', async (req, res) => {
         const post = await Post.findById(req.params.id)
             .populate('author', 'name email');
 
+        const comments = await Comment.find({ postId: req.params.id });
+
         if (!post) {
             return res.send('존재하지 않는 전자우편입니다.');
         }
 
         res.render('posts/detail', {
             post,
+            comments,
             user: req.session.user
         });
     } catch (err) {
@@ -132,7 +136,7 @@ app.get('/posts/:id', async (req, res) => {
     }
 });
 
-app.get('/posts/:id/edit', async (req, res) => {
+app.get('/posts/:id/edit', checkAuth, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         res.render('posts/edit', { post, user: req.session.user });
@@ -140,9 +144,9 @@ app.get('/posts/:id/edit', async (req, res) => {
         console.error(err);
         res.send('수정실패');
     }
-})
+});
 
-app.post('/posts/:id/delete', async (req, res) => {
+app.post('/posts/:id/delete', checkAuth, async (req, res) => {
     try {
         await Post.findByIdAndDelete(req.params.id);
         res.redirect('/posts');
@@ -185,6 +189,41 @@ app.post('/posts/:id/update', checkAuth, async (req, res) => {
     }
 });
 
+// Comment Router
+app.post('/posts/:id/comments', checkAuth, async (req, res) => {
+    try {
+        const comment = new Comment({
+            content: req.body.content,
+            author: req.session.user._id,
+            authorName: req.session.user.name,
+            postId: req.params.id
+        });
+
+        await comment.save();
+        res.redirect('/posts/' + req.params.id);
+    } catch (err) {
+        console.error(err);
+        res.send('답변글저장 실패!');
+    }
+});
+
+app.post('/comments/:id/delete', checkAuth, async (req, res) => {
+    try {
+        const comment = await Comment.findById(req.params.id);
+
+        if (comment.author.toString() !== req.session.user._id) {
+            return res.send('삭제 권한이 없습니다.');
+        }
+
+        const postId = comment.postId;
+        await Comment.findByIdAndDelete(req.params.id);
+        res.redirect('/posts/' + postId);
+    } catch (err) {
+        console.error(err);
+        res.send('답변글 삭제실패!');
+    }
+});
+
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
@@ -218,7 +257,9 @@ app.post('/register', upload.single('profileImage'), async (req, res) => {
             <p>이름: ${newUser.name}</p>
             <p>이메일: ${newUser.email}</p>
             <p>프로필: ${newUser.profileImage}</p>
-            <a href="/login" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">돌아가기</a>
+            <a href="/login" style="display: inline-block; margin-top: 20px; 
+                padding: 10px 20px; background: #007bff; color: white; 
+                text-decoration: none; border-radius: 5px;">돌아가기</a>
         `);
     } catch (err) {
         console.log('Error', err);
@@ -226,14 +267,18 @@ app.post('/register', upload.single('profileImage'), async (req, res) => {
         if (err.code === 11000) {
             return res.send(`
                 <h2 style="color: red;">이미 존재하는 이메일입니다.</h2>
-                <a href="/register" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">돌아가기</a>
+                <a href="/register" style="display: inline-block; margin-top: 20px; 
+                    padding: 10px 20px; background: #007bff; color: white; 
+                    text-decoration: none; border-radius: 5px;">돌아가기</a>
             `);
         }
 
         res.send(`
             <h2 style="color: red;">사용자가입 실패!</h2>
             <p>${err.message}</p>
-            <a href="/" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">돌아가기</a>
+            <a href="/" style="display: inline-block; margin-top: 20px; 
+                padding: 10px 20px; background: #007bff; color: white; 
+                text-decoration: none; border-radius: 5px;">돌아가기</a>
         `);
     }
 });

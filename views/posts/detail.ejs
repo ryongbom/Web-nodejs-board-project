@@ -34,6 +34,52 @@
                 </div>
             <% } %>
         </div>
+        <div class="comments-section" style="width: 100%; font-family: '청봉';">
+            <h2 style="color: #B4DCE9; margin-bottom: 10px;
+                width: 100%; padding-left: 250px; margin-top: 20px;">답변글</h2>
+
+            <% if (user) { %>
+                <div class="comment-form">
+                    <form action="/posts/<%= post._id %>/comments" method="POST">
+                        <textarea name="content" placeholder="답변글을 입력하십시오..." required></textarea>
+                        <button type="submit" class="clearfix">답변글작성</button>
+                    </form>
+                </div>
+            <% } else { %> 
+                <p style="color: #B4DCE9; text-align: center; padding: 20px; font-size: 20px;">
+                    답변글을 작성하려면 <a href="/login" style="color: #fc8d3f; font-size: 22px;">사용자가입을</a> 해주십시오.
+                </p>
+            <% } %>
+
+            
+            <div class="comments-list">
+                <% if (comments.length === 0) { %>
+                    <p style="color: wheat; text-align: center; font-size: 20px;">제시할 답변글이 없습니다.</p>
+                <% } else { %>
+                    <% comments.forEach(comment => { %>
+                        <div class="comment-item">
+                            <div class="comment-header">
+                                <span class="comment-author"><%= comment.authorName %></span>
+                                <span style="color: #B4DCE9;">
+                                    <%= new Date(comment.createdAt).toLocaleString() %>
+                                </span>
+                            </div>
+                            <div class="comment-content">
+                                <%= comment.content %>
+                            </div>
+
+                            <% if (user && user._id === comment.author.toLocaleString()) { %>
+                                <div style="text-align: right; margin-top: 5px;">
+                                    <form action="/comments/<%= comment._id %>/delete" method="POST" style="display: inline;">
+                                        <button type="submit" class="comment-delete" onclick="return confirm('댓글을 삭제하시겠습니까?')">삭제</button>
+                                    </form>
+                                </div>
+                            <% } %>
+                        </div>    
+                    <% }) %>
+                <% } %>
+            </div>
+        </div>
     </div>
 </body>
 </html>
