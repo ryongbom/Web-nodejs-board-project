@@ -1,230 +1,387 @@
-/*
-#262a32
-#B4DCE9 // blue
-#fc8d3f // orange
-#6c7076 // grey
-#d75067 // pink
-#79d163 // green
-*/
-
+/* Global reset */
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
+/* Color variables */
+:root {
+    --bg-primary: #262a32;
+    --bg-secondary: #2b2e35;
+    --bg-tertiary: #343943;
+    --bg-light: #383b40;
+    --bg-dark: #1f2225;
+    --text-gold: #deb55d;
+    --text-blue: #B4DCE9;
+    --text-beige: rgb(213, 196, 154);
+    --text-white: #f5f5f5;
+    --btn-pink: #d75067;
+    --btn-pink-hover: #ff6b84;
+    --btn-green: #689c5b;
+    --btn-green-hover: #79d163;
+    --btn-blue: #5b8c9c;
+    --btn-blue-hover: #6cb1c8;
+    --border-gold: rgb(136, 111, 63);
+    --border-grey: #6c7076;
+}
+
+/* Main container */
 .detail-container {
-    background-color: #262a32;
+    background-color: var(--bg-primary);
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;  /* height → min-height */
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 40px;
 }
 
+/* Post title */
 .detail-container h1 {
-    color: #fc8d3f;
-    font-family: '청봉';
-    font-size: 30px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    color: var(--text-gold);  /* writeStyle */
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+    font-size: 32px;
+    margin: 30px 0 20px 0;
+    text-align: center;
+    width: 70%;
+    transition: all 0.3s ease;
 }
 
+.detail-container h1:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 5px 15px rgba(222, 181, 93, 0.3);
+}
+
+/* Post info bar */
 .post-info {
-    background-color: #383b40;
+    background-color: var(--bg-light);
     width: 70%;
-    height: 10vh;
+    min-height: 60px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    color: #a9d3e0;
-    font-family: '천리마';
-    font-size: 20px;
+    color: var(--text-blue);
+    font-family: 'Inter', 'Roboto', sans-serif;
+    font-size: 16px;
     border-bottom: 3px solid #b26935;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
+.info-label {
+    color: var(--text-beige);
+    font-weight: 400;
+}
+
+.post-info strong {
+    color: var(--text-gold);
+    font-weight: 600;
+}
+
+/* Post content */
 .post-content {
     width: 70%;
-    height: 20vh;
-    background-color: #1f2225;
-    color: wheat;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    font-size: 20px;
-    font-family: '청봉';
+    min-height: 200px;
+    background-color: var(--bg-dark);
+    color: var(--text-beige);
+    font-size: 18px;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    line-height: 1.6;
+    padding: 30px 5%;
     border-bottom: 2px solid #7c9da7;
-    padding: 30px 70px;
-    scrollbar-width: 7px;
-    scrollbar-color: #6c7076 #343943;
-} 
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-grey) var(--bg-tertiary);
+}
 
+/* Custom scrollbar */
+.post-content::-webkit-scrollbar,
+.comments-section::-webkit-scrollbar,
+.comment-form textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.post-content::-webkit-scrollbar-track,
+.comments-section::-webkit-scrollbar-track,
+.comment-form textarea::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+}
+
+.post-content::-webkit-scrollbar-thumb,
+.comments-section::-webkit-scrollbar-thumb,
+.comment-form textarea::-webkit-scrollbar-thumb {
+    background: var(--border-grey);
+    border-radius: 4px;
+}
+
+.post-content::-webkit-scrollbar-thumb:hover,
+.comments-section::-webkit-scrollbar-thumb:hover,
+.comment-form textarea::-webkit-scrollbar-thumb:hover {
+    background: var(--text-gold);
+}
+
+/* Button group */
 .button-group {
     width: 70%;
-    height: 14vh;
-    background-color: #383b40;
+    min-height: 80px;
+    background-color: var(--bg-light);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 30px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-.button-group .btn {
-    width: 130px;
-    height: 50px;
+/* Base button style */
+.btn {
+    width: 120px;
+    height: 45px;
     border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 600;
     border: none;
     text-decoration: none;
-    display: flex;
-    flex-direction: row;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     color: white;
     cursor: pointer;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    transition: all 0.2s ease;
 }
 
-.edit-delete-btn {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+.btn:active {
+    transform: translateY(0);
+}
+
+/* List button */
 .btn-list {
-    background-color: #6f9acc;
-}
-
-.btn-edit {
-    background-color: #80c76f;
-}
-
-.btn-delete {
-    background-color: #d75067;
+    background-color: var(--btn-blue);
 }
 
 .btn-list:hover {
-    background-color: #9cbbdf;
+    background-color: var(--btn-blue-hover);
+}
+
+/* Edit button */
+.btn-edit {
+    background-color: var(--btn-green);
 }
 
 .btn-edit:hover {
-    background-color: #9ccd90;
+    background-color: var(--btn-green-hover);
+}
+
+/* Delete button */
+.btn-delete {
+    background-color: var(--btn-pink);
 }
 
 .btn-delete:hover {
-    background-color: #e07688;
+    background-color: var(--btn-pink-hover);
 }
 
+/* Comment button */
+.btn-comment {
+    background-color: var(--btn-blue);
+    width: 140px;
+    height: 40px;
+    font-size: 15px;
+}
+
+.btn-comment:hover {
+    background-color: var(--btn-blue-hover);
+}
+
+/* Edit/Delete button group */
+.edit-delete-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+/* Inline form */
+.inline-form {
+    display: inline;
+}
+
+/* Comments section */
 .comments-section {
-    overflow-y: auto;
-    scrollbar-width: 7px;
-    scrollbar-color: #6c7076 #343943;
-    padding: 0px 20px;
+    width: 70%;
     background-color: #2d313a;
     margin-top: 30px;
     border-top: 1px solid #4c83bd;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 50vh;
+    padding: 20px 0;
+    border-radius: 10px;
 }
 
-.comment-form {
+/* Comments title */
+.comments-title {
+    color: var(--text-blue);
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+    font-size: 28px;
+    margin-bottom: 20px;
     width: 100%;
+    text-align: center;
+}
+
+/* Comment form */
+.comment-form {
+    width: 90%;
+    margin-bottom: 30px;
 }
 
 .comment-form form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    gap: 15px;
 }
 
-.comment-form form textarea {
-    width: 65%;
-    background-color: #343943;
-    height: 80px;
-    font-size: 17px;
-    padding: 10px 20px;
-    resize: none;
-    scrollbar-width: 7px;
-    scrollbar-color: #6c7076 #343943;
-    overflow-y: auto;
-    font-family: '청봉';
-    color: wheat;
+.comment-form textarea {
+    width: 100%;
+    max-width: 800px;
+    background-color: var(--bg-tertiary);
+    min-height: 100px;
+    font-size: 16px;
+    padding: 15px 20px;
     border-radius: 15px;
-    margin-bottom: 20px;
+    border: 1px solid var(--border-grey);
+    color: var(--text-beige);
+    font-family: 'Inter', 'Roboto', sans-serif;
+    resize: vertical;
+    transition: border-color 0.2s ease;
 }
 
-.comment-form form button {
-    border: none;
-    width: 120px;
-    height: 40px;
-    border-radius: 10px;
-    font-weight: bold;
-    color: white;
-    background-color: #65a0df;
-    font-size: 15px;
-    cursor: pointer;
-    margin-bottom: 50px;
+.comment-form textarea:focus {
+    outline: none;
+    border-color: var(--text-gold);
 }
 
-.comment-form form button:hover {
-    background-color: #4c83bd;
+/* Login prompt */
+.login-prompt {
+    color: var(--text-blue);
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    font-family: 'Inter', 'Roboto', sans-serif;
 }
 
+.login-link {
+    color: var(--text-gold);
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.login-link:hover {
+    color: var(--btn-blue-hover);
+    text-decoration: underline;
+}
+
+/* Comments list */
 .comments-list {
-    width: 80%;
+    width: 90%;
+    max-width: 900px;
     border-top: 1px solid rgb(95, 110, 112);
-    padding: 10px 80px;
+    padding: 20px 0;
 }
 
+/* No comments message */
+.no-comments {
+    color: var(--text-beige);
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    padding: 20px;
+}
+
+/* Comment item */
 .comment-item {
     width: 100%;
-    background-color: #2b2e35;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border-left: 3px solid #fc8d3f;
+    background-color: var(--bg-secondary);
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--text-gold);
+    transition: transform 0.2s ease;
 }
-        
+
+.comment-item:hover {
+    transform: translateX(5px);
+}
+
+/* Comment header */
 .comment-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
-    color: #B4DCE9;
+    margin-bottom: 10px;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: var(--text-gold);
+    font-size: 16px;
+}
+
+.comment-date {
+    color: var(--text-blue);
     font-size: 14px;
 }
-        
-.comment-author {
-    font-weight: bold;
-    color: #fc8d3f;
-}
-        
+
+/* Comment content */
 .comment-content {
-    color: white;
-    line-height: 1.5;
+    color: var(--text-beige);
+    line-height: 1.6;
+    font-size: 16px;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    padding-right: 10px;
 }
-        
+
+/* Comment delete wrapper */
+.comment-delete-wrapper {
+    text-align: right;
+    margin-top: 10px;
+}
+
+/* Comment delete button */
 .comment-delete {
-    color: #d75067;
-    text-decoration: none;
-    font-size: 12px;
-    background-color: #343943;
+    color: var(--btn-pink);
+    background: none;
     border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    transition: all 0.2s ease;
+    padding: 5px 10px;
+    border-radius: 4px;
 }
-        
+
 .comment-delete:hover {
+    color: var(--btn-pink-hover);
+    background-color: rgba(215, 80, 103, 0.1);
     text-decoration: underline;
-}
-        
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
 }

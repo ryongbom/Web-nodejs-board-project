@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -32,6 +32,45 @@
                 <button type="submit" class="submit-btn">등록하기</button>
             </div>
             
+        </form>
+    </div>
+</body>
+</html> -->
+
+<!-- Version in English -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="image-section">
+        <!-- Image section (can add background image later) -->
+    </div>
+    <div class="register">
+        <h1 class="title">Create an Account</h1>
+        <form class="register-section" action="/register" method="POST" enctype="multipart/form-data">
+            <div class="name-input">
+                <label class="title-name-input">Full Name</label>
+                <input type="text" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="email-input">
+                <label class="title-email-input">Email Address</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="image-upload">
+                <label class="title-image-upload">Profile Photo</label>
+                <input type="file" name="profileImage" accept="image/*" required>
+            </div>
+            <div class="password-input">
+                <label class="title-password-input">Password</label>
+                <input type="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="button-section">
+                <button type="submit" class="submit-btn">Register</button>
+            </div>
         </form>
     </div>
 </body>

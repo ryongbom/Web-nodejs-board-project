@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -46,6 +46,78 @@
                         <td colspan="5" class="none-posts" style="text-align: center; 
                             color: white; padding: 20px 0px; font-size: 20px;">
                             제시할 게시글이 없습니다. 게시글을 작성하십시오.
+                        </td>
+                    </tr>
+                <% } else { %>
+                    <% posts.forEach((post, index) => { %>
+                    <tr style="border-bottom: 1px solid #545d69;" class="post-list">
+                        <td><%= posts.length - index %></td>
+                        <td>
+                            <a href="/posts/<%= post._id %>">
+                                <%= post.title %>
+                            </a>
+                        </td>
+                        <td><%= post.authorName %></td>
+                        <td><%= new Date(post.createdAt).toLocaleDateString() %></td>
+                        <td><%= post.views %> </td>
+                    </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> -->
+
+<!-- Version in English -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discussion Board</title>
+    <link href="/postStyle.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="list-nav">
+            <div class="title-section">
+                <div class="image-section">
+                    <!-- Navigation image -->
+                </div>
+                <h1 class="title-list">Discussion Board</h1>
+            </div>
+            
+            <% if (user) { %>
+                <p class="welcome-list"><span>Logged in as: </span><%= user.name %></p>
+                <div class="list-nav-btns">
+                    <a href="/posts/write" class="write-btn">Write Post</a>
+                    <a href="/logout" class="logout-btn">Logout</a>
+                </div>
+            <% } else { %>
+                <p class="text-nav">Please log in to write posts.</p>
+                <div class="list-nav-btns">
+                    <a href="/login" class="login-btn">Login</a>
+                    <a href="/register" class="register-btn">Register</a> 
+                </div>
+            <% } %>
+        </div>
+
+        <table class="list-container">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                    <th>Views</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (posts.length === 0) { %>
+                    <tr>
+                        <td colspan="5" class="none-posts" style="text-align: center; 
+                            color: white; padding: 20px 0px; font-size: 20px;">
+                            No posts yet. Be the first to write one!
                         </td>
                     </tr>
                 <% } else { %>

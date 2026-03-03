@@ -1,9 +1,11 @@
+/* Global reset */
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
+/* Main container */
 .container {
     background-color: #262a32;
     display: flex;
@@ -13,10 +15,10 @@
     height: 100vh;
 }
 
+/* Navigation bar */
 .list-nav {
     width: 100%;
     height: 20vh;
-    /* border-bottom: 2px solid wheat; */
     background-color: #1C1F25;
     display: flex;
     flex-direction: row;
@@ -26,6 +28,7 @@
     border-bottom: 3px solid #734626;
 }
 
+/* Title section with image */
 .title-section {
     display: flex;
     flex-direction: row;
@@ -33,34 +36,44 @@
     align-items: center;
 }
 
+/* Main title */
 .title-list {
     color: #B4DCE9;
     font-size: 50px;
-    font-family: '청봉';
-    font-weight: bold;
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+    font-weight: 700;
+    transition: color 0.2s ease;
 }
 
 .title-list:hover {
     color: #fc8d3f;
 }
 
+/* Navigation image */
 .image-section {
     background-image: url(nav-image.png);
     width: 150px;
     height: 100px;
     background-size: cover;
+    background-position: center;
+    border-radius: 8px;
 }
 
+/* Welcome message for logged in users */
 .welcome-list {
     color: rgb(135, 157, 190);
     font-size: 25px;
-    font-family: '천리마';
+    font-family: 'Inter', 'Roboto', sans-serif;
+    font-weight: 400;
 }
 
 .welcome-list span {
     font-size: 20px;
+    font-weight: 500;
+    color: #B4DCE9;
 }
 
+/* Navigation buttons */
 .list-nav a {
     text-decoration: none;
     width: 130px;
@@ -71,88 +84,114 @@
     justify-content: center;
     border-radius: 10px;
     color: white;
-    font-family: '천리마';
-    font-weight: bold;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    font-weight: 600;
     font-size: 17px;
+    transition: all 0.2s ease;
+}
+
+/* Logout button */
+.logout-btn {
+    background-color: #d75067;
 }
 
 .logout-btn:hover {
     background-color: #cf334d;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(215, 80, 103, 0.3);
 }
 
+/* Info text for non-logged in users */
 .text-nav {
     color: #548da0;
     font-size: 17px;
-    font-family: '천리마';
+    font-family: 'Inter', 'Roboto', sans-serif;
+    transition: color 0.2s ease;
 }
 
 .text-nav:hover {
     color: #B4DCE9;
 }
 
+/* Button group container */
 .list-nav-btns {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
+/* Write button */
 .write-btn {
     background-color: #689c5b;
 }
 
 .write-btn:hover {
     background-color: #a4d697;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(104, 156, 91, 0.3);
 }
 
-.logout-btn {
-    background-color: #d75067;
-}
-
+/* Login button */
 .login-btn {
     background-color: #5b8c9c;
 }
 
+.login-btn:hover {
+    background-color: #6cb1c8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(91, 140, 156, 0.3);
+}
+
+/* Register button */
 .register-btn {
     background-color: #d88d56;
 }
 
-.login-btn:hover {
-    background-color: #6cb1c8;
-}
-
 .register-btn:hover {
     background-color: #fc8d3f;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(216, 141, 86, 0.3);
 }
 
+/* Table container */
 .list-container {
     margin: 10px;
     width: 100%;
-    font-family: '청봉';
+    font-family: 'Inter', 'Roboto', sans-serif;
     border-collapse: collapse;
 }
 
+/* Table header */
 .list-container thead {
     color: #6cb1c8;
     background-color: #1C1F25;
     height: 70px;
     border-bottom: 1px solid #545d69;
     font-size: 22px;
+    font-weight: 600;
 }
 
+/* Table rows */
 .post-list {
-    color: rgb(252, 203, 90);
-    padding: 15px, 0px;
+    color: rgb(234, 208, 161);
     font-size: 20px;
     height: 80px;
     text-align: center;
+    border-bottom: 1px solid #545d69;
+    transition: background-color 0.2s ease;
 }
 
-/* 테이블 링크 스타일 (추가) */
+.post-list:hover {
+    background-color: rgba(52, 57, 67, 0.5);
+}
+
+/* Post title links */
 .post-list a {
-    color: rgb(252, 203, 90);
+    color: rgb(234, 208, 161);
     text-decoration: none;
     display: inline-block;
     padding: 5px 0;
+    transition: color 0.2s ease;
 }
 
 .post-list a:hover {
@@ -160,17 +199,30 @@
     text-decoration: underline;
 }
 
+/* Number column */
 .post-list td:first-child {
     width: 80px;
+    font-weight: 500;
 }
 
+/* Title column - left aligned */
 .post-list td:nth-child(2) {
     text-align: left;
     padding-left: 100px;
 }
 
+/* Author, Date, Views columns - centered */
 .post-list td:nth-child(3),
 .post-list td:nth-child(4),
 .post-list td:nth-child(5) {
     text-align: center;
+}
+
+/* Empty posts message */
+.none-posts {
+    color: white;
+    padding: 20px 0px;
+    font-size: 20px;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    background-color: rgba(52, 57, 67, 0.3);
 }

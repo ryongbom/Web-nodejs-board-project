@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -23,6 +23,38 @@
             <div class="buttons-group">
                 <a href="/posts/<%= post._id %>" class="cancel-btn">취소</a>
                 <button type="submit" class="submit-btn">수정</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html> -->
+
+<!-- Version in English -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Post</title>
+    <link href="/editStyle.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Post</h1>
+
+        <form action="/posts/<%= post._id %>/update" method="POST">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="title" value="<%= post.title %>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Content</label>
+                <textarea name="content" required><%= post.content %></textarea>
+            </div>
+
+            <div class="buttons-group">
+                <a href="/posts/<%= post._id %>" class="cancel-btn">Cancel</a>
+                <button type="submit" class="submit-btn">Update</button>
             </div>
         </form>
     </div>

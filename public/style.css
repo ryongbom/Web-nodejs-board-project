@@ -1,3 +1,4 @@
+/* Global reset */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,7 +15,9 @@ body {
     background-color: #1C1F25;
 }
 
-/* css for register.ejs */
+/* ===== register.ejs styles ===== */
+
+/* Left side image section */
 .image-section {
     width: 50%;
     background-image: url('background.jpg');
@@ -25,6 +28,7 @@ body {
     border-radius: 10px;
 }
 
+/* Alternative image section for different pages */
 .image-section1 {
     width: 50%;
     background-image: url('backgroundLogin.jpg');
@@ -35,32 +39,32 @@ body {
     border-radius: 10px;
 }
 
+/* Registration form container */
 .register {
     width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid red; */
     margin: 0 30px;
     height: 100vh;
-    /* color: aliceblue; */
 }
 
+/* Registration page title */
 .register h1 {
     font-size: 50px;
-    font-family: '천리마';
-    font-weight: bold;
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+    font-weight: 700;
     margin-bottom: 40px;
-    /* border: 1px solid pink; */
     color: #FE710D;
+    letter-spacing: 1px;
 }
 
+/* Registration form */
 .register-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* border: 1px solid blue; */
     width: 80%;
     height: 70vh;
     font-size: 20px;
@@ -69,9 +73,9 @@ body {
     background-color: #262a32;
     border-radius: 10px;
     color: #B4DCE9;
-    /* box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.3); */
 }
 
+/* Form inputs */
 .register-section input {
     width: 100%;
     height: 40px;
@@ -85,6 +89,14 @@ body {
     color: #fc8d3f;
 }
 
+/* Form labels */
+.register-section label {
+    padding-left: 5px;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+/* Button container */
 .button-section {
     display: flex;
     flex-direction: row;
@@ -93,13 +105,18 @@ body {
     margin-top: 20px;
 }
 
+/* Submit button */
 .submit-btn {
     width: 40%;
     height: 50px;
     font-size: 20px;
     border-radius: 10px;
     background-color: #B4DCE9;
-    font-weight: bold;
+    font-weight: 600;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .submit-btn:hover {
@@ -109,38 +126,34 @@ body {
     border: none;
 }
 
-.register-section label {
-    padding-left: 5px;
-    font-family: '천리마';
-}
+/* ===== login.ejs styles ===== */
 
-/* css for login.ejs */
+/* Login form container */
 .login-container {
     width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid red; */
     margin: 0 30px;
     height: 100vh;
-    /* color: aliceblue; */
 }
 
+/* Login page title */
 .login-container h1 {
     font-size: 50px;
-    font-family: '천리마';
-    font-weight: bold;
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+    font-weight: 700;
     margin-bottom: 40px;
-    /* border: 1px solid pink; */
     color: #FE710D;
+    letter-spacing: 1px;
 }
 
+/* Login form */
 .login-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* border: 1px solid blue; */
     width: 80%;
     height: 40vh;
     font-size: 20px;
@@ -149,9 +162,9 @@ body {
     background-color: #262a32;
     border-radius: 10px;
     color: #B4DCE9;
-    /* box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.3); */
 }
 
+/* Login form inputs */
 .login-section input {
     width: 100%;
     height: 40px;
@@ -165,6 +178,14 @@ body {
     color: #fc8d3f;
 }
 
+/* Login form labels */
+.login-section label {
+    padding-left: 5px;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+/* Button container (reused from above) */
 .button-section {
     width: 100%;
     display: flex;
@@ -174,14 +195,18 @@ body {
     margin-top: 20px;
 }
 
+/* Login button */
 .button-section button {
     width: 200px;
     height: 50px;
     border: none;
     border-radius: 10px;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 600;
     background-color: #B4DCE9;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .button-section button:hover {
@@ -191,6 +216,7 @@ body {
     border: none;
 }
 
+/* Signup link section */
 .login-container p {
     margin-top: 30px;
     color: rgb(157, 161, 173);
@@ -198,12 +224,17 @@ body {
     display: flex;
     flex-direction: row;
     gap: 30px;
+    font-family: 'Inter', 'Roboto', sans-serif;
 }
 
 .login-container p a {
     color: #fc8d3f;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 .login-container p a:hover {
     color: #B4DCE9;
+    text-decoration: underline;
 }
