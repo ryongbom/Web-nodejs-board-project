@@ -102,41 +102,43 @@
             <% } %>
         </div>
 
-        <table class="list-container">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Date</th>
-                    <th>Views</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% if (posts.length === 0) { %>
+        <div class="table-wrapper">
+            <table class="list-container">
+                <thead>
                     <tr>
-                        <td colspan="5" class="none-posts" style="text-align: center; 
-                            color: white; padding: 20px 0px; font-size: 20px;">
-                            No posts yet. Be the first to write one!
-                        </td>
+                        <th>No.</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Date</th>
+                        <th>Views</th>
                     </tr>
-                <% } else { %>
-                    <% posts.forEach((post, index) => { %>
-                    <tr style="border-bottom: 1px solid #545d69;" class="post-list">
-                        <td><%= posts.length - index %></td>
-                        <td>
-                            <a href="/posts/<%= post._id %>">
-                                <%= post.title %>
-                            </a>
-                        </td>
-                        <td><%= post.authorName %></td>
-                        <td><%= new Date(post.createdAt).toLocaleDateString() %></td>
-                        <td><%= post.views %> </td>
-                    </tr>
-                    <% }) %>
-                <% } %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% if (posts.length === 0) { %>
+                        <tr>
+                            <td colspan="5" class="none-posts" style="text-align: center; 
+                                color: white; padding: 20px 0px; font-size: 20px;">
+                                No posts yet. Be the first to write one!
+                            </td>
+                        </tr>
+                    <% } else { %>
+                        <% posts.forEach((post, index) => { %>
+                        <tr style="border-bottom: 1px solid #545d69;" class="post-list">
+                            <td><%= posts.length - index %></td>
+                            <td>
+                                <a href="/posts/<%= post._id %>">
+                                    <%= post.title %>
+                                </a>
+                            </td>
+                            <td><%= post.authorName %></td>
+                            <td><%= new Date(post.createdAt).toLocaleDateString() %></td>
+                            <td><%= post.views %> </td>
+                        </tr>
+                        <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>

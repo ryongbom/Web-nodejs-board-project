@@ -13,6 +13,7 @@
     align-items: center;
     width: 100%;
     height: 100vh;
+    overflow: hidden;
 }
 
 /* Navigation bar */
@@ -26,6 +27,7 @@
     align-items: center;
     padding: 0 50px;
     border-bottom: 3px solid #734626;
+    flex-shrink: 0;
 }
 
 /* Title section with image */
@@ -153,6 +155,34 @@
     box-shadow: 0 5px 15px rgba(216, 141, 86, 0.3);
 }
 
+.table-wrapper {
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    scrollbar-width: thin;
+    scrollbar-color: #6c7076 #343943;
+}
+
+.table-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #343943;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #6c7076;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #deb55d;
+}
+
+
 /* Table container */
 .list-container {
     margin: 10px;
@@ -169,6 +199,9 @@
     border-bottom: 1px solid #545d69;
     font-size: 22px;
     font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 /* Table rows */
@@ -182,7 +215,7 @@
 }
 
 .post-list:hover {
-    background-color: rgba(52, 57, 67, 0.5);
+    background-color: rgba(222, 181, 93, 0.1);
 }
 
 /* Post title links */
@@ -192,6 +225,10 @@
     display: inline-block;
     padding: 5px 0;
     transition: color 0.2s ease;
+    max-width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .post-list a:hover {
@@ -209,6 +246,7 @@
 .post-list td:nth-child(2) {
     text-align: left;
     padding-left: 100px;
+    max-width: 600px;
 }
 
 /* Author, Date, Views columns - centered */
@@ -216,6 +254,7 @@
 .post-list td:nth-child(4),
 .post-list td:nth-child(5) {
     text-align: center;
+    width: 150px;
 }
 
 /* Empty posts message */
