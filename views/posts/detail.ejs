@@ -91,6 +91,7 @@
     <meta charset="UTF-8">
     <title>Post Details</title>
     <link href="/detailStyle.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="detail-container">
@@ -104,6 +105,24 @@
 
         <div class="post-content">
             <%= post.content %>
+        </div>
+
+        <div class="like-section">
+            <% if (user) { %>
+                <form action="/posts/<%= post._id %>/like" method="POST" class="like-form" id="likeForm-<%= post._id %>">
+                    <button type="submit" class="like-btn <%= post.likes.includes(user._id) ? 'liked' : '' %>" id="likeBtn-<%= post._id %>">
+                        <i class="fa-<%= post.likes.includes(user._id) ? 'solid' : 'regular' %> fa-heart"></i>
+                        <span class="like-count" id="likeCount-<%= post._id %>"><%= post.likes.length %></span>
+                        <span class="like-text"><%= post.likes.includes(user._id) ? 'Liked' : 'Like' %></span>
+                    </button>
+                </form>
+            <% } else { %>
+                <div class="like-section-login">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="like-count"><%= post.likes.length %></span>
+                    <a href="/login" class="login-like">Login to like</a>
+                </div>
+            <% } %>
         </div>
 
         <div class="button-group">
@@ -165,5 +184,45 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.like-form').forEach(form => {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const postId = form.action.split('/').slice(-2, -1)[0];
+                const likeBtn = document.getElementById(`likeBtn-${postId}`);
+                const likeCount = document.getElementById(`likeCount-${postId}`);
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        likeCount.textContent = data.likeCount;
+                        
+                        if (data.liked) {
+                            likeBtn.classList.add('liked');
+                            likeBtn.querySelector('i').className = 'fa-solid fa-heart';
+                            likeBtn.querySelector('.like-text').textContent = 'Liked';
+                        } else {
+                            likeBtn.classList.remove('liked');
+                            likeBtn.querySelector('i').className = 'fa-regular fa-heart';
+                            likeBtn.querySelector('.like-text').textContent = 'Like';
+                        }
+                    }
+                } catch (err) {
+                    console.error('Error:', err);
+                }
+            })
+        })
+    </script>
 </body>
 </html>

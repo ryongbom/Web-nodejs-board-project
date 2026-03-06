@@ -111,6 +111,7 @@
                         <th>Author</th>
                         <th>Date</th>
                         <th>Views</th>
+                        <th>Likes</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -133,6 +134,10 @@
                             <td><%= post.authorName %></td>
                             <td><%= new Date(post.createdAt).toLocaleDateString() %></td>
                             <td><%= post.views %> </td>
+                            <td>
+                                <i class="fa-regular fa-heart" style="color: #deb55d;"></i>
+                                <%= post.likes ? post.likes.length : 0 %>
+                            </td>
                         </tr>
                         <% }) %>
                     <% } %>

@@ -520,6 +520,38 @@ app.post('/comments/:id/delete', checkAuth, async (req, res) => {
     }
 });
 
+// like toggle
+app.post('/posts/:id/like', checkAuth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        const userId = req.session.user._id;
+
+        const alreadyLiked = await post.likes.includes(userId);
+
+        if (alreadyLiked) {
+            post.likes = post.likes.filter(id => id.toString() !== userId);
+        } else {
+            post.likes.push(userId);
+        }
+
+        await post.save();
+
+        // AJAX request ? check
+        if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+            return res.json({
+                success: true,
+                liked: !alreadyLiked,
+                likeCount: post.likes.length
+            });
+        } else {
+            res.redirect('back');
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Failed to process like' });
+    }
+});
+
 // Logout
 app.get('/logout', (req, res) => {
     req.session.destroy();
@@ -579,5 +611,21 @@ app.post('/register', upload.single('profileImage'), async (req, res) => {
                 padding: 10px 20px; background: #007bff; color: white; 
                 text-decoration: none; border-radius: 5px;">Go to Home</a>
         `);
+    }
+});
+
+app.get('/posts/:id/like/status', checkAuth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        const userId = req.session.user._id;
+
+        const liked = post.likes.includes(userId);
+
+        res.json({
+            liked: liked,
+            likeCount: post.likes.length
+        });
+    } catch (err) {
+        res.status(500).json({ error: 'Server error' });
     }
 });
